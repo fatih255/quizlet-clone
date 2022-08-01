@@ -1,0 +1,317 @@
+@use 'styles/variables.module.scss';
+@import 'styles/media-queries.module.scss';
+
+//header component
+.hide {
+    display: none;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    font-weight: 600;
+    height: 4rem;
+    border-bottom: 1px solid variables.$gray-color-200;
+
+    .left,
+    .right {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1.5rem;
+        height: 100%;
+        padding: 0 .5rem;
+    }
+
+    @include lt-md-quizlet {
+        height: 3rem;
+        padding: 0 .5rem;
+        .right {
+            justify-content: flex-end;
+        }
+
+        .left>*:not(.logo-container) {
+            display: none;
+        }
+        .logo-container,.left {
+            padding: unset;
+        }
+    }
+}
+
+.logo-container {
+    padding: 0 0.5rem;
+}
+
+.logo {
+    display: block;
+
+    @include lt-md-quizlet {
+        display: none;
+    }
+}
+
+.mobile-logo {
+    cursor: pointer;
+    display: none;
+
+    @include lt-md-quizlet {
+        display: block;
+    }
+}
+
+//searchbox component
+.hidden {
+    display: none !important;
+}
+
+.show {
+    display: unset !important;
+}
+
+.searchbox {
+    background-color: #f6f7fb;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    white-space: nowrap;
+    position: relative;
+    @extend .box-shadow-sm;
+
+    @include lt-md-quizlet {
+        label {
+            padding: 0.45rem !important;
+            border-radius: 0.45rem !important;
+
+            svg {
+                top: 20% !important;
+                left: 20% !important;
+            }
+        }
+
+        .closesearchbox {
+            bottom: 6px !important;
+        }
+
+        input {
+            font-size: .84rem !important;
+        }
+    }
+
+    &.active {
+        position: absolute;
+        right: 2rem;
+        z-index: 10;
+    }
+
+    &.active input {
+        padding-right: 1.3rem;
+    }
+
+    .labelsearchbox {
+        margin-left: 1.5rem;
+        background-color: #f6f7fb;
+        border-radius: 0.6rem;
+        padding: 0.6rem;
+    }
+
+    .searchicon {
+        position: absolute;
+        left: 0.67rem;
+    }
+
+    .closesearchbox {
+        position: absolute;
+        right: 0.67rem;
+        bottom: 8px;
+    }
+
+    input {
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: .05px;
+        color: #282e3e;
+        border: none;
+        background: transparent;
+        text-overflow: ellipsis;
+        padding-right: 2.5rem;
+        width: 170px;
+    }
+
+    input.expanded {
+        width: 45vw;
+    }
+
+    @include lt-lg {
+        &.mobilesearchbox:not(.active) {
+            background-color: white;
+            box-shadow: unset;
+            padding: unset;
+            border-radius: 100%;
+            border: 1px solid variables.$gray-color-250;
+
+            svg {
+                color: variables.$gray-color-300 !important;
+                top: 23%;
+                left: 26%;
+            }
+
+            &:hover {
+                border: 1px solid variables.$gray-color-400;
+
+                svg {
+                    color: variables.$gray-color-400 !important;
+                }
+            }
+
+            label {
+                width: 1rem;
+                height: 1rem;
+                display: flex;
+                margin: unset;
+                background-color: unset;
+                cursor: pointer;
+            }
+
+            input {
+                display: none;
+            }
+        }
+
+        &.mobilesearchbox {
+            input {
+                display: unset;
+            }
+        }
+    }
+}
+
+// Navlink component
+.navlink {
+    height: 100%;
+    color: variables.$gray-color-400;
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+    position: relative;
+}
+
+.hiddenMobile {
+    display: inherit;
+
+    @include lt-lg {
+        display: none;
+    }
+}
+
+.navlink:hover::after {
+    background: variables.$primary-color-400;
+    border-top-right-radius: 0.25rem;
+    border-top-left-radius: 0.25rem;
+    height: 0.25rem;
+    right: 0;
+    bottom: 0;
+    content: " ";
+    left: 0;
+    position: absolute;
+}
+
+//dropdown component
+.dropdown {
+    position: absolute;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    @extend .box-shadow-sm;
+    @extend .rounded-md;
+
+    .col-flex {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .item {
+        white-space: nowrap;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: .9rem;
+        cursor: default;
+        padding: .9rem .9rem;
+
+        &.link {
+            padding: 0rem;
+            width: 100%;
+
+            a {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 0.9rem;
+                width: 100%;
+                padding: .9rem .9rem;
+                color: variables.$gray-color-300;
+
+                &:hover {
+                    color: variables.$gray-color-400;
+                }
+            }
+        }
+
+        svg {
+            width: 1.65rem;
+            height: 1.65rem;
+        }
+
+        .item-left {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: .9rem;
+            width: 100%;
+            cursor: default;
+
+            svg {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+        }
+
+        &:hover,
+        &.active {
+            background-color: variables.$gray-color-200;
+        }
+    }
+
+    .item-pages {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        min-width: 12rem;
+        border-left: 1px solid variables.$gray-color-200;
+
+        a {
+            font-size: 1rem;
+            padding: 1.1rem;
+            white-space: nowrap;
+            cursor: pointer;
+            color: variables.$gray-color-400;
+        }
+
+        a:hover {
+            background-color: variables.$gray-color-200;
+        }
+
+        .primaryColorLink {
+            color: variables.$primary-color;
+
+            &:hover {
+                color: variables.$primary-color-hover;
+            }
+        }
+    }
+}

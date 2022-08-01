@@ -1,0 +1,94 @@
+@use 'styles/variables.module.scss';
+@import 'styles/media-queries.module.scss';
+
+@mixin button($text-color, $bg-color, $bg-hover-color, $hover-border-bottom-use:false) {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    color: $text-color;
+    padding: 0.10rem .65rem;
+    background-color: $bg-color;
+    border-radius: 0.25rem;
+    font-weight: 600;
+
+    @if($hover-border-bottom-use==true) {
+        height: 4rem;
+    }
+
+    @else {
+        height: calc(100% - 2rem);
+        margin: .5rem 0rem;
+    }
+
+    &:hover {
+        background-color: $bg-hover-color;
+    }
+
+    @if($hover-border-bottom-use==true) {
+        &:hover::after {
+            background: variables.$primary-color-400;
+            border-top-right-radius: 0.25rem;
+            border-top-left-radius: 0.25rem;
+            height: 0.25rem;
+            right: 0;
+            bottom: 0;
+            content: " ";
+            left: 0;
+            position: absolute;
+        }
+    }
+}
+
+@mixin default {
+    &:not(.create-btn) {
+        padding: 0.38rem 0.65rem;
+        height: unset;
+        margin: unset;
+    }
+}
+
+.btn-primary {
+    @include button(white, variables.$primary-color, variables.$primary-color-hover);
+    @include default;
+}
+
+.btn-secondary {
+    @include button(variables.$gray-color-400, variables.$secondary-color, variables.$secondary-color-hover);
+    @include default;
+}
+
+.btn-white {
+    @include button(variables.$gray-color-400, white, variables.$gray-color-100);
+    @include default;
+}
+
+.btn-dropdown {
+    @include button(variables.$gray-color-400, white, unset, true)
+}
+
+//for media queries
+.create-btn {
+    padding: 0.18rem 0.6rem;
+    display: flex;
+
+    .hide {
+        display: block;
+    }
+
+    svg:not(.hide) {
+        display: none;
+    }
+
+    @include lt-lg {
+        padding: 0.3rem;
+
+        .hide {
+            display: none;
+        }
+
+        svg:not(.hide) {
+            display: block;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+$primary-color: #4255ff;
+$primary-color-hover:#423ed8;
+$secondary-color: #ffcd1f;
+$secondary-color-hover:#ffdc62;
+$primary-color-400:#a8b1ff;
+$gray-color-100: #f6f7fb;
+$gray-color-200: #edeff4;
+$gray-color-250: #d6d6d6;
+$gray-color-300:#80869a;
+$gray-color-400: #282e3e;
+
+.box-shadow-sm {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
+.rounded-md {
+    border-radius: 0.6rem;
+}
+
+
+:export {
+    primaryColor: $primary-color;
+    secondaryColor: $secondary-color;
+    grayColor400: $gray-color-400;
+}
