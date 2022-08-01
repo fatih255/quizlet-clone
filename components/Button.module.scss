@@ -72,23 +72,7 @@
     padding: 0.18rem 0.6rem;
     display: flex;
 
-    .hide {
-        display: block;
-    }
-
-    svg:not(.hide) {
-        display: none;
-    }
-
     @include lt-lg {
-        padding: 0.3rem;
-
-        .hide {
-            display: none;
-        }
-
-        svg:not(.hide) {
-            display: block;
-        }
+        padding: 0.4rem;
     }
 }

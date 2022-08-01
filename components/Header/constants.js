@@ -113,7 +113,7 @@ export const NavigationItems = [
     {
         text: 'Giriş sayfası',
         href: '/',
-        hiddenMobile:true
+        design: 'hide-lt-md'
     },
     <DropdownButton
         text="Konular"
@@ -124,15 +124,14 @@ export const NavigationItems = [
         href: '/'
     },
     <DropdownButton
-        text="Oluştur"
-        design={["btn-primary"]}
-        mobile={{
-            design: ['create-btn', 'btn-primary'],
-            icon: [<IoMdAdd color="white" size={22} />]
+        icons={({ cx }) => {
+            return <IoMdAdd className={cx('hide-gt-md')} color="white" size={22} />
         }}
-        arrowSize={30}
-        hideArrowOnMobile={true}
-        hideTextOnMobile={true}
+        text="Oluştur"
+        design={['btn-primary', 'create-btn']}
+        textDesign='hide-lt-md'
+        dropdownIconDesign='hide-lt-md'
+        dropdownIconArrowSize={30}
         dropdownElement={<Dropdown dropdownItems={dropdownCreate} />}
     />
 ]

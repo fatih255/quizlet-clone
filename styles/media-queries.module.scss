@@ -9,7 +9,7 @@ $screen-md-max: 1279px;
 $screen-lg-max: 1919px;
 $screen-xl-max: 5000px;
 //extras
-$quizlet-md-min: 761px;
+$quizlet-md-max: 761px;
 
 // media devices
 @mixin xs {
@@ -92,9 +92,50 @@ $quizlet-md-min: 761px;
   }
 }
 
-//extras quizlet responses
+//extras quizlet responsives
 @mixin lt-md-quizlet {
-  @media screen and (max-width: #{$quizlet-md-min}) {
+  @media screen and (max-width: #{$quizlet-md-max}) {
     @content;
   }
+}
+
+/*
+@mixin createResponsiveClasses explain:
+
+lt = --->max ,gt= ---->min 
+actionname-variant-sizename
+example : hide-lt-sm 
+@media screen and (max-width: 959px) {
+  .hide-lt-sm {
+    display: none;
+  }
+}
+*/
+$sizes: ('xs':'599px',
+  'sm':'959px',
+  'md':'1279px',
+  'md-quizlet':'761px',
+  'lg':'1919px'
+);
+
+$variants:('lt':'max-width', 'gt':'min-width');
+
+@mixin createResponsiveClasses($actionname) {
+
+  @each $variantname,
+  $variantquery in $variants {
+
+    @each $sizename,
+    $width in $sizes {
+      @media screen and ($variantquery:$width) {
+        .#{$actionname}-#{$variantname}-#{$sizename} {
+          @content
+        }
+      }
+    }
+  }
+}
+
+@include createResponsiveClasses('hide') {
+  display: none!important;
 }

@@ -28,6 +28,7 @@
     @include lt-md-quizlet {
         height: 3rem;
         padding: 0 .5rem;
+
         .right {
             justify-content: flex-end;
         }
@@ -35,7 +36,9 @@
         .left>*:not(.logo-container) {
             display: none;
         }
-        .logo-container,.left {
+
+        .logo-container,
+        .left {
             padding: unset;
         }
     }
@@ -68,7 +71,7 @@
 }
 
 .show {
-    display: unset !important;
+    display: unset;
 }
 
 .searchbox {
@@ -119,12 +122,13 @@
     .searchicon {
         position: absolute;
         left: 0.67rem;
+        top: 0.67rem;
     }
 
     .closesearchbox {
         position: absolute;
         right: 0.67rem;
-        bottom: 8px;
+        bottom: 7px;
     }
 
     input {
@@ -141,6 +145,27 @@
 
     input.expanded {
         width: 45vw;
+    }
+
+    @include lt-md-quizlet {
+        input.expanded {
+            width: 83vw;
+            padding-left: 0;
+        }
+
+        &.active {
+            right: 0.7rem;
+        }
+
+        label {
+            margin-left: 0rem !important;
+
+            svg {
+                color: variables.$gray-color-300 !important;
+                left: unset !important;
+                top: 26% !important;
+            }
+        }
     }
 
     @include lt-lg {
@@ -183,6 +208,48 @@
             input {
                 display: unset;
             }
+        }
+    }
+}
+
+.searchbox-container {
+    display: contents;
+}
+
+.search-box-backarrow {
+    display: none;
+}
+
+@include lt-md-quizlet {
+    .searchbox-container.activecontainer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        display: unset;
+        height: 100vh;
+        background: white;
+        z-index: 10;
+        padding-top: 0.5rem;
+
+        .labelsearchbox {
+            padding-top: 0.6rem 0.6rem 0.6rem 0.3rem
+        }
+
+        .searchicon {
+            display: none;
+        }
+
+        .closesearchbox {
+            display: none;
+        }
+
+        .search-box-backarrow {
+            padding: .5rem;
+            display: block;
+            position: absolute;
+            left: -2.5rem;
+            top: 0rem;
         }
     }
 }

@@ -5,14 +5,20 @@ import classNames from 'classnames/bind';
 import styles from './ButtonDropdown.module.scss'
 import buttonStyles from './Button.module.scss'
 
+
+const cx = classNames.bind(styles);
+
 const ButtonDropdown = ({
     text, design = 'btn-dropdown',
     dropdownElement,
-    arrowSize = 22,
-    hideArrowOnMobile = false,
-    mobile = null }) => {
+    dropdownIconArrowSize = 22,
+    dropdownIconDesign = '',
+    textDesign = '',
+    icons = () => null
+}) => {
 
-    const cx = classNames.bind(styles);
+
+
     const buttoncx = classNames.bind(buttonStyles);
     const [show, setShow] = useState(false);
 
@@ -40,29 +46,18 @@ const ButtonDropdown = ({
         }
     }, []);
 
-
-    const forDesktop = <>
-        <Button onClick={showDropdownHandler}
-            text={text}
-            design={design}
-            Icon={<BiChevronDown size={arrowSize} />}
-        />
-        {show && dropdownElement}
-    </>
-
-    const forMobile = <>
-        <Button onClick={showDropdownHandler}
-            text={text}
-            hideTextOnMobile={true}
-            design={mobile?.design}
-            Icon={[...mobile?.icon ?? '', <BiChevronDown className={buttoncx({ hide: hideArrowOnMobile })} size={arrowSize} />]}
-        />
-        {show && dropdownElement}
-    </>
-
+    const getIcons = icons({ cx: buttoncx })
+    const iconCheck = getIcons !== null ? ((Array.isArray(getIcons)) ? getIcons.map((icon) => <React.Fragment key={key + 'i'} children={icon} />) : getIcons) : ''
     return (
         <div ref={dropdownRef} className={cx('nav-with-dropdown', { active: show })}>
-            {mobile ? forMobile : forDesktop}
+            <Button onClick={showDropdownHandler}
+                text={text}
+                hideTextOnMobile={true}
+                design={design}
+                textDesign={textDesign}
+                Icon={[iconCheck, <BiChevronDown className={buttoncx(dropdownIconDesign)} size={dropdownIconArrowSize} />]}
+            />
+            {show && dropdownElement}
         </div>
     );
 }

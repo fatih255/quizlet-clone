@@ -5,16 +5,15 @@ import { useHeaderContext } from './context';
 const Navlink = ({ items }) => {
 
     const { cx } = useHeaderContext();
-
     return (
         <React.Fragment>
             {
                 items?.map((item, index) => {
                     if (React.isValidElement(item)) {
-                        return <React.Fragment key={index} children={<div className={cx({ hiddenMobile: item?.hiddenMobile })} >{item}</div>} />
+                        return <React.Fragment key={index} children={<div className={cx(item.design)} >{item}</div>} />
                     } else {
                         return <Link key={index} href={item.href}>
-                            <a className={cx('navlink', { hiddenMobile: item?.hiddenMobile })}>
+                            <a className={cx('navlink', item.design)}>
                                 <span>{item.text}</span>
                             </a>
                         </Link>
