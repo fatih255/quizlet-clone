@@ -1,11 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
 import { cx } from './constants';
+import { useRootStore } from 'providers/RootStoreProvider';
+import { observer } from 'mobx-react-lite';
 
 const Navlink = ({ items }) => {
 
+    const { isMobileMenuActive } = useRootStore().UIStore;
+
     return (
-        <div className={cx('navlink-container')}>
+        <div className={cx('navlink-container', { 'mobile-menu-active': isMobileMenuActive })}>
             {
                 items?.map((item, index) => {
                     if (React.isValidElement(item)) {
@@ -25,4 +29,4 @@ const Navlink = ({ items }) => {
     );
 }
 
-export default Navlink;
+export default observer(Navlink);

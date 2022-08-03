@@ -1,14 +1,14 @@
-import { makeAutoObservable } from "mobx"
+import { makeAutoObservable, observable } from "mobx"
 
 class UIStore {
     isMobileMenuActive = false;
 
     constructor() {
-        makeAutoObservable(this)
+        makeAutoObservable(this, {}, { autoBind: true })
     }
 
     change_isMobileMenuActive() {
-        isMobileMenuActive = !isMobileMenuActive;
+        this.isMobileMenuActive = !this.isMobileMenuActive;
     }
 }
 

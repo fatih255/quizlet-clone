@@ -1,8 +1,11 @@
 :root {
     --navlink-container-display: flex;
+    --user-select: auto;
 }
 
-
+html {
+    user-select: var(--user-select);
+}
 
 html,
 body {

@@ -1,20 +1,25 @@
 import { useEffect, useState } from "react";
 
-const UseScreenWidth = () => {
-    const [ScreenWidth, setScreenWidth] = useState(null);
-    const responsiveBreakPoint = ScreenWidth < 1279;
+
+
+const UseScreenWidth = (maxWidth) => {
+    const [responsiveBreakPoint, setResponsiveBreakPoint] = useState(null);
 
     useEffect(() => {
-        if (ScreenWidth === null) {
-            setScreenWidth(window.innerWidth);
+        if (responsiveBreakPoint === null) {
+            setResponsiveBreakPoint(window.innerWidth < maxWidth);
         }
         window.onresize = () => {
-            setScreenWidth(window.innerWidth);
-        }
-        return () => window.onresize = null;
+            if (window.innerWidth < maxWidth != responsiveBreakPoint) {
+                setResponsiveBreakPoint(window.innerWidth < maxWidth)
+            }
+        };
+
+        //return () => window.onresize = null;
+
     }, [])
 
-    return { responsiveBreakPoint: responsiveBreakPoint };
+    return responsiveBreakPoint;
 
 }
 

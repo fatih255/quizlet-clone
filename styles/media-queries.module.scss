@@ -117,7 +117,6 @@ $sizes: ('xs':'599px',
   'md-quizlet':'761px',
   'lg':'1919px'
 );
-
 $variants:('lt':'max-width', 'gt':'min-width');
 
 @mixin createResponsiveClasses($actionname) {
@@ -128,7 +127,7 @@ $variants:('lt':'max-width', 'gt':'min-width');
     @each $sizename,
     $width in $sizes {
       @media screen and ($variantquery:$width) {
-        .#{$actionname}-#{$variantname}-#{$sizename} {
+        .navlink-container:not(.mobile-menu-active) .#{$actionname}-#{$variantname}-#{$sizename} {
           @content
         }
       }
@@ -137,5 +136,5 @@ $variants:('lt':'max-width', 'gt':'min-width');
 }
 
 @include createResponsiveClasses('hide') {
-  display: none!important;
+  display: none !important;
 }

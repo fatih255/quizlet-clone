@@ -1,27 +1,31 @@
-const userSelectNone = (action = () => { }, withmousedown = false) => {
+import { useEffect } from "react";
 
-    document.documentElement.style.userSelect = 'none'
-    //handler
-    action();
-    document.documentElement.style.userSelect = null
+const onClickWithUserSelectNone = (action = () => { }) => {
 
+    // need use with onmousedown event
+    document.documentElement.style = "user-select:none";
+    document.documentElement.addEventListener('mouseup', onMouseUpHandler);
 
-    const mouseDownHandler = () => {
-        document.documentElement.style.userSelect = 'none'
-    }
-    const mouseUpHandler = () => {
-        document.documentElement.style.userSelect = null
-        //handler
-        action();
-        document.removeEventListener('mousedown', mouseDownHandler)
-        document.removeEventListener('mouseup', mouseUpHandler)
-    }
-    if (withmousedown) {
-        document.addEventListener('mousedown', mouseDownHandler)
-        document.addEventListener('mouseup', mouseUpHandler)
+    function onMouseUpHandler() {
+        action && action();
+        document.documentElement.style = null;
+        document.documentElement.removeEventListener('mouseup', onMouseUpHandler);
     }
 
 }
 
-export { userSelectNone }
+const changeCSS_RootVariable = (
+    { trigger,
+        variableName,
+        value: { true: trueVal, false: falseVal }
+    }) => {
+
+    useEffect(() => {
+        var r = document.querySelector(':root');
+        r.style = trigger ? `${variableName}: ${trueVal}` : `${variableName}: ${falseVal}`;
+    }, [trigger]);
+}
+
+
+export { changeCSS_RootVariable, onClickWithUserSelectNone }
 

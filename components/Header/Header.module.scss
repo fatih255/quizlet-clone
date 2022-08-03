@@ -37,7 +37,7 @@
             justify-content: flex-end;
         }
 
-        .left>*:not(.logo-container) {
+        .left>*:not(.logo-container,.mobile-menu-active) {
             display: none;
         }
 
@@ -50,10 +50,14 @@
 
 // Navlink component 
 .navlink-container {
-    display: flex;
+    display: var(--navlink-container-display);
     height: 100%;
     gap: 1.5rem;
     align-items: center;
+
+    &.mobile-menu-active{
+        display: block;
+    }
 }
 
 .navlink {
@@ -138,10 +142,10 @@
         top: 0.67rem;
     }
 
-    .closesearchbox {
+    .closesearchbox-container {
         position: absolute;
         right: 0.67rem;
-        bottom: 7px;
+        bottom: 3px;
     }
 
     input {
@@ -170,8 +174,8 @@
 
             svg {
                 color: variables.$gray-color-300;
-                top: 23%;
-                left: 26%;
+                top: 24%;
+                left: 25%;
             }
 
             &:hover {
@@ -182,10 +186,12 @@
                 }
             }
 
-            label {
-                width: 1rem;
-                height: 1rem;
+            label,
+            button {
+                width: 2rem;
+                height: 2rem;
                 display: flex;
+                padding: 0;
                 margin: unset;
                 background-color: unset;
                 cursor: pointer;
@@ -228,7 +234,7 @@
         }
 
         input {
-            font-size: .84rem;
+            font-size: 1rem;
         }
 
         input.expanded {

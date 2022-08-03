@@ -4,7 +4,8 @@ import { TbSearch } from 'react-icons/tb';
 import { IoCloseOutline } from 'react-icons/io5';
 import { cx } from './constants';
 import BackArrow from 'public/icons/common/back-arrow.svg'
-import { userSelectNone } from 'utils/ui';
+import { changeCSS_RootVariable } from 'utils/ui';
+import UseScreenWidth from 'hooks/useScreenWidth';
 
 const Searchbox = () => {
 
@@ -18,29 +19,40 @@ const Searchbox = () => {
         setFocusedSearchBox(true);
     }
 
-    const mobileClickIconHandler = () => {
-        userSelectNone(() => {
-            setFocusedSearchBox(!focusedSearchBox);
-        }, true);
+    const mobileClickIconHandler = (e) => {
+        setFocusedSearchBox(!focusedSearchBox)
     }
 
-    useEffect(() => {
-        var r = document.querySelector(':root');
-        r.style = focusedSearchBox ? '--navlink-container-display: none' : '--navlink-container-display: flex';
-    }, [focusedSearchBox])
+    changeCSS_RootVariable({
+        trigger: focusedSearchBox,
+        variableName: '--navlink-container-display',
+        value: { true: 'none', false: 'flex' }
+    })
+
+    const searchBoxButtonShow = UseScreenWidth(1280); // ------->1280 show button
+
 
     return (
         <div className={cx('searchbox-container', { activecontainer: focusedSearchBox })}>
             <div className={cx('searchbox', { active: focusedSearchBox })}>
-                <label onClick={() => !focusedSearchBox && mobileClickIconHandler()} className={cx('labelsearchbox')}>
-                    <SearchIcon />
-                    <SearchInput />
-                </label>
-                <IoCloseOutline
-                    onClick={() => { /*searchBoxRef?.current.blur(); */ searchBoxRef.current.value = null; setFocusedSearchBox(false); }}
-                    className={cx('closesearchbox', { hidden: !focusedSearchBox })}
-                    color={themeVariables.grayColor400} size={25} />
-                <BackArrow onClick={() => mobileClickIconHandler()} className={cx('search-box-backarrow')} />
+
+                {searchBoxButtonShow && !focusedSearchBox ?
+                    <button onClick={() => !focusedSearchBox && mobileClickIconHandler()}>
+                        <SearchIcon />
+                        <SearchInput />
+                    </button>
+                    : <label onClick={() => !focusedSearchBox && mobileClickIconHandler()} className={cx('labelsearchbox')}>
+                        <SearchIcon />
+                        <SearchInput />
+                    </label>}
+                <div className={cx('closesearchbox-container')} tabIndex="0" role="button" >
+                    <IoCloseOutline
+                        onClick={() => { /*searchBoxRef?.current.blur(); */ searchBoxRef.current.value = null; setFocusedSearchBox(false); }}
+                        className={cx('closesearchbox', { hidden: !focusedSearchBox })}
+                        color={themeVariables.grayColor400} size={25} />
+                </div>
+
+                <BackArrow onClick={(e) => mobileClickIconHandler(e)} className={cx('search-box-backarrow')} />
             </div>
         </div>
     );
