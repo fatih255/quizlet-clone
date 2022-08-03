@@ -13,6 +13,11 @@ import Folder from 'public/icons/create/folder.svg';
 import Class from 'public/icons/create/class.svg';
 import { IoMdAdd } from 'react-icons/io';
 
+import classNames from 'classnames/bind';
+import headerStyles from './Header.module.scss';
+
+export const cx = classNames.bind(headerStyles);
+
 
 
 

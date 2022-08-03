@@ -1,14 +1,15 @@
-import 'styles/globals.scss';
-import DefaultLayout from 'layouts/DefaultLayout';
 import React from 'react';
+import DefaultLayout from 'layouts/DefaultLayout';
+import { RootStoreProvider } from 'providers/RootStoreProvider';
+import 'styles/globals.scss';
 
 function MyApp({ Component, pageProps }) {
 	return (
-		<React.Fragment>
+		<RootStoreProvider hydrationData={pageProps.hydrationData}>
 			<DefaultLayout>
 				<Component {...pageProps} />
 			</DefaultLayout>
-		</React.Fragment>
+		</RootStoreProvider>
 	);
 }
 

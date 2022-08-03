@@ -42,7 +42,7 @@
 
 @mixin default {
     &:not(.create-btn) {
-        padding: 0.38rem 0.65rem;
+        padding: 0.48rem 0.65rem;
         height: unset;
         margin: unset;
     }
@@ -64,7 +64,7 @@
 }
 
 .btn-dropdown {
-    @include button(variables.$gray-color-400, white, unset, true)
+    @include button(variables.$gray-color-400, white, unset, true);
 }
 
 //for media queries
@@ -76,3 +76,4 @@
         padding: 0.4rem;
     }
 }
+

@@ -2,17 +2,16 @@ import React, { useState } from 'react';
 import { TbChevronRight } from 'react-icons/tb'
 import themeVariables from 'styles/variables.module.scss';
 import Link from 'next/link';
-import { useHeaderContext } from './context';
+import { cx } from './constants';
 
 const Dropdown = ({ dropdownItems }) => {
-// fix more render issue*****
+    // fix more render issue*****
     const [selectedItemIndex, setselectedItemIndexIndex] = useState(0);
-    const { cx } = useHeaderContext();
 
     const Item = ({ index, icon, text, links, href }) => {
 
         const onMouseEnterHandler = (itemIndex) => {
-            setselectedItemIndexIndex(itemIndex)
+            links && links.length > 0 && setselectedItemIndexIndex(itemIndex)
         }
 
         return (

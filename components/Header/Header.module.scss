@@ -25,6 +25,10 @@
         padding: 0 .5rem;
     }
 
+    .logo-container {
+        padding: 0 0.5rem;
+    }
+
     @include lt-md-quizlet {
         height: 3rem;
         padding: 0 .5rem;
@@ -44,8 +48,33 @@
     }
 }
 
-.logo-container {
-    padding: 0 0.5rem;
+// Navlink component 
+.navlink-container {
+    display: flex;
+    height: 100%;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.navlink {
+    height: 100%;
+    color: variables.$gray-color-400;
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+    position: relative;
+}
+
+.navlink-container .navlink:hover::after {
+    background: variables.$primary-color-400;
+    border-top-right-radius: 0.25rem;
+    border-top-left-radius: 0.25rem;
+    height: 0.25rem;
+    right: 0;
+    bottom: 0;
+    content: " ";
+    left: 0;
+    position: absolute;
 }
 
 .logo {
@@ -67,11 +96,15 @@
 
 //searchbox component
 .hidden {
-    display: none !important;
+    display: none;
 }
 
-.show {
-    display: unset;
+.searchbox-container {
+    display: contents;
+}
+
+.search-box-backarrow {
+    display: none;
 }
 
 .searchbox {
@@ -81,26 +114,6 @@
     white-space: nowrap;
     position: relative;
     @extend .box-shadow-sm;
-
-    @include lt-md-quizlet {
-        label {
-            padding: 0.45rem !important;
-            border-radius: 0.45rem !important;
-
-            svg {
-                top: 20% !important;
-                left: 20% !important;
-            }
-        }
-
-        .closesearchbox {
-            bottom: 6px !important;
-        }
-
-        input {
-            font-size: .84rem !important;
-        }
-    }
 
     &.active {
         position: absolute;
@@ -147,29 +160,8 @@
         width: 45vw;
     }
 
-    @include lt-md-quizlet {
-        input.expanded {
-            width: 83vw;
-            padding-left: 0;
-        }
-
-        &.active {
-            right: 0.7rem;
-        }
-
-        label {
-            margin-left: 0rem !important;
-
-            svg {
-                color: variables.$gray-color-300 !important;
-                left: unset !important;
-                top: 26% !important;
-            }
-        }
-    }
-
     @include lt-lg {
-        &.mobilesearchbox:not(.active) {
+        &:not(.active) {
             background-color: white;
             box-shadow: unset;
             padding: unset;
@@ -177,7 +169,7 @@
             border: 1px solid variables.$gray-color-250;
 
             svg {
-                color: variables.$gray-color-300 !important;
+                color: variables.$gray-color-300;
                 top: 23%;
                 left: 26%;
             }
@@ -186,7 +178,7 @@
                 border: 1px solid variables.$gray-color-400;
 
                 svg {
-                    color: variables.$gray-color-400 !important;
+                    color: variables.$gray-color-400;
                 }
             }
 
@@ -204,7 +196,7 @@
             }
         }
 
-        &.mobilesearchbox {
+        & {
             input {
                 display: unset;
             }
@@ -212,29 +204,52 @@
     }
 }
 
-.searchbox-container {
-    display: contents;
-}
-
-.search-box-backarrow {
-    display: none;
-}
-
 @include lt-md-quizlet {
+    .searchbox {
+        &.active {
+            position: fixed;
+            right: 0.7rem;
+            width: calc(100% - 5rem);
+
+            .labelsearchbox {
+                margin-left: 0rem;
+                padding-left: .4rem;
+
+                svg {
+                    color: variables.$gray-color-300;
+                    left: 25%;
+                    top: 23%;
+                }
+            }
+        }
+
+        .closesearchbox {
+            bottom: 6px;
+        }
+
+        input {
+            font-size: .84rem;
+        }
+
+        input.expanded {
+            width: 95%;
+            padding-right: 0;
+            padding-left: 0;
+        }
+    }
+
     .searchbox-container.activecontainer {
         position: fixed;
         top: 0;
         left: 0;
         width: 100vw;
-        display: unset;
         height: 100vh;
         background: white;
         z-index: 10;
-        padding-top: 0.5rem;
-
-        .labelsearchbox {
-            padding-top: 0.6rem 0.6rem 0.6rem 0.3rem
-        }
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+        width: calc(100vw - 3rem);
 
         .searchicon {
             display: none;
@@ -245,43 +260,23 @@
         }
 
         .search-box-backarrow {
-            padding: .5rem;
             display: block;
-            position: absolute;
-            left: -2.5rem;
-            top: 0rem;
+            position: fixed;
+            left: 10px;
+            top: 6px;
+            padding: .65rem;
+            border-radius: 50%;
+            cursor: pointer;
+
+            &:hover {
+                background: variables.$gray-color-200;
+            }
+
+            &:active {
+                background: variables.$gray-color-250;
+            }
         }
     }
-}
-
-// Navlink component
-.navlink {
-    height: 100%;
-    color: variables.$gray-color-400;
-    display: flex;
-    white-space: nowrap;
-    align-items: center;
-    position: relative;
-}
-
-.hiddenMobile {
-    display: inherit;
-
-    @include lt-lg {
-        display: none;
-    }
-}
-
-.navlink:hover::after {
-    background: variables.$primary-color-400;
-    border-top-right-radius: 0.25rem;
-    border-top-left-radius: 0.25rem;
-    height: 0.25rem;
-    right: 0;
-    bottom: 0;
-    content: " ";
-    left: 0;
-    position: absolute;
 }
 
 //dropdown component

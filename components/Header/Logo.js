@@ -1,20 +1,31 @@
 import React from 'react';
 import Link from 'next/link';
-import { useHeaderContext } from './context';
 import themeVariables from 'styles/variables.module.scss';
 import QuizletIcon from 'public/icons/logo.svg';
 import QuizletMobileIcon from 'public/icons/mobile-logo.svg';
-
+import { userSelectNone } from 'utils/ui';
+import { cx } from './constants';
 
 const Logo = () => {
-    const { cx } = useHeaderContext();
 
     const showMobileMenuHandler = () => {
-        document.documentElement.style.userSelect = 'none'
-        //handler
-        document.documentElement.style.userSelect = null
+        userSelectNone(() => {
+            //handlers
+            //display block -navlinks -dropdown
+            //navlinks list
+            //dropdown list
+            /*
+                flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: white; */
 
+        });
     }
+
 
     return (
         <div className={cx('logo-container')}>
@@ -32,4 +43,4 @@ const Logo = () => {
 }
 
 
-export default Logo;
+export default React.memo(Logo);
