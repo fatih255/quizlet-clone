@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import themeVariables from 'styles/variables.module.scss';
 import { TbSearch } from 'react-icons/tb';
 import { IoCloseOutline } from 'react-icons/io5';
 import { cx } from './constants';
 import BackArrow from 'public/icons/common/back-arrow.svg'
 import { changeCSS_RootVariable } from 'utils/ui';
-import UseScreenWidth from 'hooks/useScreenWidth';
+import UseScreenWidthBreakPoint from 'hooks/UseScreenWidthBreakPoint';
 
 const Searchbox = () => {
 
@@ -29,7 +29,7 @@ const Searchbox = () => {
         value: { true: 'none', false: 'flex' }
     })
 
-    const searchBoxButtonShow = UseScreenWidth(1280); // ------->1280 show button
+    const searchBoxButtonShow = UseScreenWidthBreakPoint('w < 1280'); // ------->1280 show button
 
 
     return (
