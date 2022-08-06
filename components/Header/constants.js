@@ -122,15 +122,17 @@ export const NavigationItems = [
     },
     <DropdownButton
         text="Konular"
+        design={['hide-lt-md-quizlet', 'order-lt-md-4']}
         dropdownElement={<Dropdown dropdownItems={dropdownTopics} />}
     />,
     {
-        text: 'Ders kitabı çözümleri',
+        text: 'Çözümler',
+        design: 'hide-lt-md-quizlet',
         href: '/'
     },
     <DropdownButton
         icons={({ cx }) => {
-            return <IoMdAdd className={cx('hide-gt-md')} color="white" size={22} />
+            return <IoMdAdd className={cx('hide-gt-md') + ' add-icon'} color="white" size={22} />
         }}
         text="Oluştur"
         design={['btn-primary', 'create-btn']}

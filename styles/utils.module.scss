@@ -1,0 +1,44 @@
+@use 'styles/media-queries.module.scss';
+
+@mixin createCSS($attr, $value, $range:false, $naming:true) {
+    @if($naming) {
+        @if($range) {
+            @for $i from 1 through $value {
+                .#{$attr}-#{$i} {
+                    #{$attr}:#{$i};
+                }
+            }
+        }
+
+        @else {
+            .#{$attr}-#{$value} {
+                #{$attr}:#{$value};
+            }
+        }
+    }
+
+    @else {
+        @if($range) {
+            @for $i from 1 through $value {
+                &-#{$i} {
+                    #{$attr}:#{$i}
+                }
+            }
+        }
+
+        @else {
+            &-#{$value} {
+                #{$attr}:#{$value};
+            }
+        }
+    }
+}
+
+//order-[1,...15]
+@include createCSS('order', 15, true);
+
+// order-[lt-xs,lt-md,...lt-lg]-[1,....15] order with responsive
+
+@include media-queries.createResponsiveClasses('order') {
+    @include createCSS('order', 15, true, false);
+}

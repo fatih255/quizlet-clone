@@ -1,15 +1,19 @@
 import Button from './Button';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { BiChevronDown } from 'react-icons/bi';
 import classNames from 'classnames/bind';
 import styles from './ButtonDropdown.module.scss'
 import buttonStyles from './Button.module.scss'
+import UseDropDownBox from 'hooks/UseDropDownBox';
 
 
 const cx = classNames.bind(styles);
+const initialValues = {
+    design: 'btn-dropdown'
+}
 
 const ButtonDropdown = ({
-    text, design = 'btn-dropdown',
+    text, design = initialValues.design,
     dropdownElement,
     dropdownIconArrowSize = 22,
     dropdownIconDesign = '',
@@ -17,43 +21,20 @@ const ButtonDropdown = ({
     icons = () => null
 }) => {
 
-
+    const dropdownRef = useRef(null);
 
     const buttoncx = classNames.bind(buttonStyles);
-    const [show, setShow] = useState(false);
-
-    const dropdownRef = useRef(null);
-    const isMouseOutofBox = useRef(false);
-    const EffectRan = useRef(false);
-    const showDropdownHandler = () => {
-        setShow(!show)
-    }
-
-    useEffect(() => {
-        if (!EffectRan.current) {
-            dropdownRef.current.onmouseleave = () => isMouseOutofBox.current = true;
-            dropdownRef.current.onmouseenter = () => isMouseOutofBox.current = false;
-            //detect click events, click on the dropdown or not
-            const onClickHandler = () => {
-                isMouseOutofBox.current && setShow(false)
-            }
-            document.addEventListener('click', onClickHandler)
-        }
-        return () => {
-            dropdownRef.current?.onmouseleave && (dropdownRef.current.onmouseleave = null);
-            dropdownRef.current?.onmouseenter && (dropdownRef.current.onmouseenter = null);
-            EffectRan.current = false
-        }
-    }, []);
 
     const getIcons = icons({ cx: buttoncx })
     const iconCheck = getIcons !== null ? ((Array.isArray(getIcons)) ? getIcons.map((icon) => <React.Fragment key={key + 'i'} children={icon} />) : getIcons) : ''
+
+
+    const { show, setShowHandler } = UseDropDownBox(dropdownRef);
     return (
         <div ref={dropdownRef} className={cx('nav-with-dropdown', { active: show })}>
-            <Button onClick={showDropdownHandler}
+            <Button onClick={setShowHandler}
                 text={text}
-                hideTextOnMobile={true}
-                design={design}
+                design={designCheck(design, 'btn-', initialValues.design)}
                 textDesign={textDesign}
                 Icon={[iconCheck, <BiChevronDown className={buttoncx(dropdownIconDesign)} size={dropdownIconArrowSize} />]}
             />
@@ -63,3 +44,26 @@ const ButtonDropdown = ({
 }
 
 export default ButtonDropdown;
+
+
+
+
+
+function designCheck(design, searchword, initialValue) {
+    let designValue = [];
+    if (Array.isArray(design)) {
+        if (design.some(design => design.includes(searchword))) {
+            designValue = [...design];
+        } else {
+            designValue = [...design, initialValue];
+        }
+    } else {
+        if (!design.includes(searchword)) {
+            designValue = [design, initialValue];
+        } else {
+            designValue = [design]
+        }
+    }
+    return designValue;
+}
+

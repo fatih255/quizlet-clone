@@ -9,7 +9,7 @@ const Navlink = ({ items }) => {
     const { isMobileMenuActive } = useRootStore().UIStore;
 
     return (
-        <div className={cx('navlink-container', { 'mobile-menu-active': isMobileMenuActive })}>
+        <div className={cx('navlink-container')}>
             {
                 items?.map((item, index) => {
                     if (React.isValidElement(item)) {
@@ -24,6 +24,25 @@ const Navlink = ({ items }) => {
                     //<Link key={index} href={href}><a><span>{text}</span></a></Link> { href, text }
                     //jsxElements?.map((JsxElement, index) => <React.Fragment key={index} children={JsxElement} />)
                 })}
+            {isMobileMenuActive && <div className="mobile-menu">
+                {
+                    items?.map((item, index) => {
+                        if (React.isValidElement(item)) {
+                            return <React.Fragment key={index} children={<div className=' m-component' >{item}</div>} />
+                        } else {
+                            return <Link key={'link-' + index} href={item.href}>
+                                <a className={'m-navlink'}>
+                                    <span>{item.text}</span>
+                                </a>
+                            </Link>
+                        }
+                        //<Link key={index} href={href}><a><span>{text}</span></a></Link> { href, text }
+                        //jsxElements?.map((JsxElement, index) => <React.Fragment key={index} children={JsxElement} />)
+                    })
+                }
+
+            </div>
+            }
         </div>
 
     );

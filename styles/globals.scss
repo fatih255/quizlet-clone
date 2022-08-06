@@ -1,3 +1,6 @@
+@use './variables.module.scss';
+@import './media-queries.module.scss';
+
 :root {
     --navlink-container-display: flex;
     --user-select: auto;
@@ -40,6 +43,86 @@ a:visited {
 
 input {
     outline: none;
+}
+
+.mobile-menu {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    flex-direction: column;
+    padding-top: 4rem;
+    background: white;
+    padding-left: 1rem;
+
+    .add-icon {
+        display: none !important;
+    }
+
+    a,
+    button {
+        display: flex !important;
+        margin: 1rem 0rem;
+        font-size: 1.2rem;
+        height: unset;
+        padding: 0
+    }
+
+    .m-navlink {
+        position: relative;
+
+        span,
+        a {
+            &:hover::after {
+                background: variables.$primary-color-400;
+                border-top-left-radius: 0.25rem;
+                border-bottom-left-radius: 0.25rem;
+                height: 100%;
+                width: .3rem;
+                left: -1rem;
+                top: 0;
+                content: " ";
+                position: absolute;
+            }
+        }
+    }
+
+    .m-component:nth-child(2) {
+        button span {
+            font-weight: 700;
+        }
+
+        order: 4;
+    }
+
+    .m-component div {
+        position: relative;
+    }
+
+    .m-component {
+
+        &:hover::after,
+        & button:hover::after {
+            background: variables.$primary-color-400;
+            border-top-left-radius: 0.25rem;
+            border-bottom-left-radius: 0.25rem;
+            height: 100%;
+            width: .3rem;
+            left: -1rem;
+            top: 0;
+            content: " ";
+            position: absolute;
+        }
+    }
+
+    &:last-child button {
+        background-color: white;
+        color: variables.$gray-color-400;
+        padding-left: 0;
+    }
 }
 
 // font : Hurme Geometric Sans 2

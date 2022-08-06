@@ -6,11 +6,43 @@
     display: none;
 }
 
+.navlink:hover::after {
+    background: variables.$primary-color-400;
+    border-top-right-radius: 0.25rem;
+    border-top-left-radius: 0.25rem;
+    height: 0.25rem;
+    right: 0;
+    bottom: 0;
+    content: " ";
+    left: 0;
+    position: absolute;
+}
+
+.logo-container.actived-mobile-menu {
+    padding: unset !important;
+    position: absolute;
+    top: 0.8rem;
+}
+
+.navbar [class^="mobile-menu"] {
+    & div button svg:last-child {
+        display: block !important;
+    }
+
+    button,
+    span {
+        display: flex !important;
+    }
+
+    *:hover::after{
+        content: unset;
+    }
+}
+
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 2rem;
     font-weight: 600;
     height: 4rem;
     border-bottom: 1px solid variables.$gray-color-200;
@@ -37,10 +69,6 @@
             justify-content: flex-end;
         }
 
-        .left>*:not(.logo-container,.mobile-menu-active) {
-            display: none;
-        }
-
         .logo-container,
         .left {
             padding: unset;
@@ -49,15 +77,60 @@
 }
 
 // Navlink component 
+.close-mobile-menu {
+    display: none;
+    cursor: pointer;
+    border: 1px solid variables.$gray-color-200;
+    border-radius: 50%;
+    padding: .3rem;
+
+    &:hover {
+        background-color: variables.$gray-color-200;
+    }
+
+    &:active {
+        background-color: variables.$gray-color-250;
+    }
+}
+
+.mobile-logo-active-menu {
+    display: none;
+    cursor: pointer;
+}
+
+.actived-mobile-menu {
+    z-index: 11;
+
+    .desktop-logo {
+        display: none !important;
+    }
+
+    .logo-container-for-mobile {
+        display: flex;
+        width: calc(100vw - 2rem);
+        justify-content: space-between;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+
+        .mobile-logo {
+            display: none;
+        }
+
+        .close-mobile-menu {
+            display: block;
+        }
+
+        .mobile-logo-active-menu {
+            display: block;
+        }
+    }
+}
+
 .navlink-container {
     display: var(--navlink-container-display);
     height: 100%;
     gap: 1.5rem;
     align-items: center;
-
-    &.mobile-menu-active{
-        display: block;
-    }
 }
 
 .navlink {
@@ -67,18 +140,6 @@
     white-space: nowrap;
     align-items: center;
     position: relative;
-}
-
-.navlink-container .navlink:hover::after {
-    background: variables.$primary-color-400;
-    border-top-right-radius: 0.25rem;
-    border-top-left-radius: 0.25rem;
-    height: 0.25rem;
-    right: 0;
-    bottom: 0;
-    content: " ";
-    left: 0;
-    position: absolute;
 }
 
 .logo {

@@ -1,15 +1,31 @@
 import { useEffect } from "react";
 
-const onClickWithUserSelectNone = (action = () => { }) => {
 
-    // need use with onmousedown event
+
+// need use with onmousedown event
+const onClickWithUserSelectNone = (action = () => { }, e = null) => {
+
+    let isMouseOutTarget = false;
     document.documentElement.style = "user-select:none";
     document.documentElement.addEventListener('mouseup', onMouseUpHandler);
 
+    if (e) {
+        e.target.addEventListener('mouseout', onMouseOutHandler)
+        function onMouseOutHandler() {
+            isMouseOutTarget = true;
+            e.target.removeEventListener('mouseout', onMouseOutHandler)
+        }
+    }
+
     function onMouseUpHandler() {
-        action && action();
+        if (e) {
+            !isMouseOutTarget && action && action();
+        } else {
+            action && action();
+        }
         document.documentElement.style = null;
         document.documentElement.removeEventListener('mouseup', onMouseUpHandler);
+
     }
 
 }
