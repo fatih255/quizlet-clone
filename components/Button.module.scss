@@ -1,7 +1,7 @@
 @use 'styles/variables.module.scss';
 @import './Header/Header.module.scss';
 
-@mixin button($text-color, $bg-color, $bg-hover-color, $hover-border-bottom-use:false) {
+@mixin button($text-color, $bg-color, $bg-hover-color, $hover-border-bottom-use:false, $active-color:false) {
     display: flex;
     position: relative;
     justify-content: center;
@@ -11,6 +11,12 @@
     background-color: $bg-color;
     border-radius: 0.25rem;
     font-weight: 600;
+
+    @if($active-color) {
+        &:active {
+            background: $active-color
+        }
+    }
 
     @if($hover-border-bottom-use==true) {
         height: 4rem;
@@ -56,7 +62,7 @@
 }
 
 .btn-secondary {
-    @include button(variables.$gray-color-400, variables.$secondary-color, variables.$secondary-color-hover);
+    @include button(variables.$gray-color-400, variables.$secondary-color, variables.$secondary-color-hover, false, variables.$secondary-color-active);
     @include default;
 }
 
@@ -87,4 +93,9 @@
             background: unset;
         }
     }
+}
+
+
+.pointer-events-none{
+    pointer-events: none;
 }

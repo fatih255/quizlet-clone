@@ -90,9 +90,21 @@ input {
         }
     }
 
+  
+
     .m-component:nth-child(2) {
         button span {
             font-weight: 700;
+        }
+
+        span {
+            font-size: 1.2rem;
+        }
+
+        button {
+            &:hover::after {
+                content: unset;
+            }
         }
 
         order: 4;

@@ -139,7 +139,7 @@ export const NavigationItems = [
         textDesign='hide-lt-md'
         dropdownIconDesign='hide-lt-md'
         dropdownIconArrowSize={30}
-        dropdownElement={<Dropdown dropdownItems={dropdownCreate} />}
+        dropdownElement={<Dropdown   dropdownItems={dropdownCreate} />}
     />
 ]
 

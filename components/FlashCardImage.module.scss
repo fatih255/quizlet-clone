@@ -1,0 +1,83 @@
+@import 'styles/media-queries.module.scss';
+
+
+
+.flashcard {
+    display: flex;
+    max-width: 64rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 2.5rem;
+    margin-top: 4rem;
+
+    &.image-left {
+        flex-direction: row-reverse;
+
+        .image-container {
+            margin-right: 5rem;
+        }
+    }
+
+    &.image-right {
+        flex-direction: row;
+
+        .image-container {
+            margin-left: 5rem;
+        }
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .image-container {
+        flex: 1.12 0 0;
+    }
+
+    div {
+        flex: 1 0 0;
+
+        h3 {
+            margin-top: 3rem;
+            font-size: 1.5rem;
+        }
+
+        p {
+            text-align: left;
+            font-size: 1.3rem;
+        }
+    }
+
+    @include lt-md-quizlet {
+
+        &.image-left,
+        &.image-right {
+            flex-direction: column;
+            flex-direction: column-reverse;
+            padding: 0 1rem;
+
+            .image-container {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+
+        h3 {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+        }
+
+        .image-container {
+            margin-left: 0;
+        }
+
+        div p {
+            font-size: 1rem;
+        }
+    }
+}
+
+
+.mt-0{
+    margin-top: 0;
+}

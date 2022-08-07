@@ -1,0 +1,38 @@
+@use 'styles/variables.module.scss';
+@use 'styles/media-queries.module.scss';
+
+.testimonial-slider {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 6.25rem 0;
+
+    div {
+        max-width: 60rem;
+
+        h3 {
+            font-size: 1.9rem;
+
+            &::before {
+                position: relative;
+                margin-right: 0.5rem;
+                content: url(/icons/common/quotes-open.svg);
+            }
+
+            &::after {
+                position: relative;
+                margin-left: 0.5rem;
+                bottom: -1.125rem;
+                content: url(/icons/common/quotes-close.svg);
+            }
+        }
+
+        p {
+            color: variables.$gray-color-275;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+    }
+}
