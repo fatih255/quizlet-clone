@@ -6,11 +6,14 @@
     position: relative;
     justify-content: center;
     align-items: center;
-    color: $text-color;
     padding: 0.10rem .65rem;
     background-color: $bg-color;
     border-radius: 0.25rem;
     font-weight: 600;
+
+    * {
+        color: $text-color;
+    }
 
     @if($active-color) {
         &:active {
@@ -54,6 +57,41 @@
         height: unset;
         margin: unset;
     }
+
+    &.extra-padding {
+        padding: 1.5rem 2rem;
+    }
+
+    &.rounded-xs {
+        border-radius: .125rem;
+    }
+
+    &.rounded-sm {
+        border-radius: .25rem;
+    }
+
+    &.rounded-md {
+        border-radius: .5rem;
+    }
+
+    &.icon-left,
+    & a {
+        * svg {
+            margin-left: .8rem;
+        }
+
+        flex-direction: row-reverse;
+    }
+
+    &.icon-right,
+    & a,
+    & {
+        svg {
+            margin-right: .4rem;
+        }
+
+        flex-direction: row;
+    }
 }
 
 .btn-primary {
@@ -95,7 +133,6 @@
     }
 }
 
-
-.pointer-events-none{
+.pointer-events-none {
     pointer-events: none;
 }

@@ -1,14 +1,38 @@
 @import 'styles/media-queries.module.scss';
 
-
-
 .flashcard {
     display: flex;
-    max-width: 64rem;
+    max-width: 57rem;
     margin-left: auto;
     margin-right: auto;
     padding: 0 2.5rem;
+    padding-bottom: 1.5rem;
     margin-top: 4rem;
+
+    .with-subtitle {
+        justify-content: flex-start;
+
+        h5 {
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+
+        h3 {
+            margin-top: 0.3rem;
+        }
+    }
+
+    p {
+        font-size: 1.3rem;
+    }
+
+    .content {
+        padding: 1.5rem 0;
+    }
+
+    .image-container {
+        align-self: center;
+    }
 
     &.image-left {
         flex-direction: row-reverse;
@@ -71,13 +95,22 @@
             margin-left: 0;
         }
 
-        div p {
-            font-size: 1rem;
+        @include lt-md {
+            div p {
+                font-size: 1rem;
+            }
         }
     }
 }
 
+@include lt-sm {
+    .mobile-margin-image {
+        img {
+            margin-bottom: 3.4375rem
+        }
+    }
+}
 
-.mt-0{
+.mt-0 {
     margin-top: 0;
 }

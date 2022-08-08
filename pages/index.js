@@ -3,6 +3,8 @@ import styles from 'styles/page/Home.module.scss';
 import classNames from 'classnames/bind';
 import FlashCardImage from 'components/FlashCardImage';
 import TestimonialSlider from 'components/TestimonialSlider';
+import { IoMdAdd } from 'react-icons/io';
+import HighlightButton from 'components/HighlightButton';
 
 
 export default function Home() {
@@ -24,37 +26,84 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* highlight section */}
-      <section className={cx('highlight-text')}>
-        <h2>Quizlet'i kullanan öğrencilerin <em>%90'ı</em> daha yüksek notlar alıyor.</h2>
+      <div className="main-container">
+        {/* highlight section */}
+        <section className={cx('highlight-text')}>
+          <h2>Quizlet'i kullanan öğrencilerin <em>%90'ı</em> daha yüksek notlar alıyor.</h2>
+        </section>
+
+        {/* image flashcards section */}
+        <section>
+          <FlashCardImage
+            title="Siz herkesin ilgisini çektikten sonra geri kalanı bize bırakın."
+            text="İngilizce öğrenmenizi sağlayacak kartlardan tarihi anlamanızı kolaylaştıran oyunlara kadar istediğiniz zorlukların üstesinden gelmek için çeşitli araçlar kullanabilirsiniz."
+            image="/images/flashcard1.avif"
+            imagePosition="right"
+            design="mt-0"
+          />
+          <FlashCardImage
+            title="Bir sonraki başarınıza çok az kaldı."
+            text="Öğrendiğiniz her yeni bilgi bir başarıdır. Quizlet, konuları ve alanları ayırdığından her adımda yeni bir şey başarmış olursunuz."
+            image="/images/flashcard2.avif"
+            imagePosition="left"
+          />
+          <FlashCardImage
+            title="Endişelenmeyin. Yapmanız gerekeni yapın."
+            text="Başarı duygusunu tattıktan sonra devam etmeniz kolay olur."
+            image="/images/flashcard3.avif"
+            imagePosition="right"
+          />
+        </section>
+        {/* testimonial slider section */}
+        <section>
+          <TestimonialSlider
+            items={[
+              {
+                content: "Quizlet, çalışmanın ne kadar eğlenceli ve önemli olabileceğini anlamamı sağladı! Bu yıl, okuldaki kimya dersindeki terimleri Quizlet'e ekledim ve yakındaki sınavım için şimdiden kendimi rahat hissediyorum.",
+                person: "LITTLEBUTTERCUP, 17"
+              },
+              {
+                content: "Quizlet, çalışmanın harika bir yöntemi. Arkadaşlarıma da bahsettim ve hepimiz giderek daha iyi oluyoruz. Quizlet aklıma her geldiğinde saatlere çalışmak yerine birkaç dakika çalışmanın bana verdiği zevki hatırlıyorum.",
+                person: "AGENTDOLLY, 29"
+              },
+              {
+                content: "Quizlet, notlarımı iyileştirmeme çok yardımcı oldu. Çalışmayı eğlenceli ve verimli hale getirdiğiniz için teşekkür ederim!",
+                person: "NICOLEB18, 19"
+              },
+              {
+                content: "Çalışmak benim için çok zordu. Şu anda yeni bir üniversiteye gidiyorum ve burada Quizlet'le tanıştım. Ders çalışırken artık strese girmiyorum. TEŞEKKÜR EDERİM, QUIZLET!",
+                person: "SIERRAFR, 20"
+              }
+            ]}
+          />
+        </section>
+        {/* Are you ready section */}
+        <section className={cx('areyouready')}>
+          <h3>Daha iyi notlar almaya hazır mısınız?</h3>
+          <Button
+            link="home" text="Çalışmaya başlayalım"
+            design={['btn-primary', 'extra-padding', 'rounded-md']}
+          />
+        </section>
+      </div>
+      {/* Supports students section */}
+      <section className={cx('bg-color-fog')}>
+        <FlashCardImage
+          title="Öğrencilerinize destek verin"
+          subtitle="Öğretmenler"
+          text="Başarmak istedikleri ne olursa olsun her öğrencinin ilgilendiği konuyu kendine güvenerek öğrenmesini sağlayabilirsiniz. Quizlet'in ücretsiz çalışma setlerini, çalışma modlarını ve sınıf oyunlarını kullanarak öğrencilerinizi kolaylıkla motive edebilirsiniz."
+          image="/images/support-teacher.png"
+          imagePosition="right"
+          design="mobile-margin-image"
+          button={<HighlightButton
+            text="Quizlet'i sınıfınıza taşıyın"
+            type='link'
+            href="/"
+          />
+          }
+        />
       </section>
 
-      {/* image flashcards section */}
-      <section>
-        <FlashCardImage
-          title="Siz herkesin ilgisini çektikten sonra geri kalanı bize bırakın."
-          text="İngilizce öğrenmenizi sağlayacak kartlardan tarihi anlamanızı kolaylaştıran oyunlara kadar istediğiniz zorlukların üstesinden gelmek için çeşitli araçlar kullanabilirsiniz."
-          image="/images/flashcard1.avif"
-          imagePosition="right"
-          design="mt-0"
-        />
-        <FlashCardImage
-          title="Bir sonraki başarınıza çok az kaldı."
-          text="Öğrendiğiniz her yeni bilgi bir başarıdır. Quizlet, konuları ve alanları ayırdığından her adımda yeni bir şey başarmış olursunuz."
-          image="/images/flashcard2.avif"
-          imagePosition="left"
-        />
-        <FlashCardImage
-          title="Endişelenmeyin. Yapmanız gerekeni yapın."
-          text="Başarı duygusunu tattıktan sonra devam etmeniz kolay olur."
-          image="/images/flashcard3.avif"
-          imagePosition="right"
-        />
-      </section>
-      {/* testimonial slider section */}
-      <section>
-        <TestimonialSlider />
-      </section>
     </>
   )
 }

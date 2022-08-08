@@ -1,0 +1,39 @@
+@use 'styles/variables.module.scss';
+@import 'styles/media-queries.module.scss';
+
+.highlight-btn {
+    border-bottom: .3125rem solid #3ccfcf;
+    height: 4.25rem;
+    letter-spacing: .0375rem;
+    line-height: 4.25rem;
+    font-weight: 600;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    &,
+    * {
+        transition: all .12s cubic-bezier(.47, 0, .745, .715);
+    }
+
+    a,
+    button {
+        font-size: 1.3rem;
+        @include lt-md {
+            font-size: 1rem;
+        }
+
+        color: variables.$gray-color-400;
+    }
+
+    &:hover {
+        * {
+            color: variables.$secondary-color;
+        }
+
+        border-bottom: .3125rem solid variables.$secondary-color;
+    }
+}
+
+div.highlight-btn {
+    width: fit-content;
+}

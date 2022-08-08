@@ -1,19 +1,25 @@
 @use 'styles/variables.module.scss';
-@use 'styles/media-queries.module.scss';
+@import 'styles/media-queries.module.scss';
 
 .testimonial-slider {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 6.25rem 0;
+    padding: 15.25rem 0;
+    position: relative;
 
     div {
+        width: 100%;
+        position: absolute;
         max-width: 60rem;
+        padding: 0 100%;
+        transform: translateX(100%);
 
         h3 {
             font-size: 1.9rem;
+            font-weight: 700;
 
             &::before {
                 position: relative;
@@ -27,6 +33,15 @@
                 bottom: -1.125rem;
                 content: url(/icons/common/quotes-close.svg);
             }
+
+            @include lt-md {
+                padding: 0 3rem;
+
+                &::after,
+                &::before {
+                    display: flex;
+                }
+            }
         }
 
         p {
@@ -34,5 +49,48 @@
             font-size: 1rem;
             font-weight: 600;
         }
+    }
+
+    @include lt-md {
+        margin-top: 4rem;
+
+        div h3,
+        p {
+            text-align: left;
+            font-size: 1.6rem;
+            padding: 0 2rem;
+        }
+    }
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slide-out {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.testimonial-slider {
+    .slide-in {
+        animation: slide-in 1.3s cubic-bezier(.77, 0, .175, 1);
+        animation-fill-mode: forwards;
+    }
+
+    .slide-out {
+        animation: slide-out 1.3s cubic-bezier(.77, 0, .175, 1);
+        animation-fill-mode: forwards;
     }
 }

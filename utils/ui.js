@@ -30,6 +30,7 @@ const onClickWithUserSelectNone = (action = () => { }, e = null) => {
 
 }
 
+// when state change , change any css :root variables . State value type must be boolean
 const changeCSS_RootVariable = (
     { trigger,
         variableName,
@@ -43,5 +44,11 @@ const changeCSS_RootVariable = (
 }
 
 
-export { changeCSS_RootVariable, onClickWithUserSelectNone }
+function selectorSass(cx) {
+    let selector = (s) => { return `.${cx(s[0])}` }
+    return { selector }
+}
+// USAGE : const {selector} = selectorSass(cx('test'))    use with backticks like selector.`testimonial-slider`
+
+export { changeCSS_RootVariable, onClickWithUserSelectNone, selectorSass }
 

@@ -6,8 +6,33 @@
     --user-select: auto;
 }
 
+@mixin headings {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @content;
+    }
+}
+
+@include headings {
+    margin: 0
+}
+
+p {
+    line-height: 1.5
+}
+
+.main-container {
+    padding: 0 .5rem;
+}
+
 html {
     user-select: var(--user-select);
+    overflow: auto;
 }
 
 html,
@@ -89,8 +114,6 @@ input {
             }
         }
     }
-
-  
 
     .m-component:nth-child(2) {
         button span {
