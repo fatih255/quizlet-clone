@@ -1,0 +1,56 @@
+@use 'styles/utils.module.scss';
+
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+
+    .close-modal {
+        position: absolute;
+        padding: 1rem;
+        right: .4rem;
+        top: .4rem;
+        z-index: 1000;
+        cursor: pointer;
+    }
+
+    .modal-inner {
+        display: flex;
+        height: 100%;
+        position: relative;
+    }
+}
+
+/*
+@mixin animate($animation,$duration,$method,$times)
+@mixin keyframes($name)
+*/
+@include utils.keyframes(fadeIn) {
+    0% {
+        opacity: 0;
+        transform: translateY(-20%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+@include utils.keyframes(fadeOut) {
+    0% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-20%);
+    }
+}
+
+@include utils.animate(fadeIn, .3s, ease, 1);
+@include utils.animate(fadeOut, .3s, ease, 1);

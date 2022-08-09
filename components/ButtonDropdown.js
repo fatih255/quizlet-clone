@@ -1,15 +1,15 @@
 import Button from './Button';
 import React, { useEffect, useRef } from 'react';
 import { BiChevronDown } from 'react-icons/bi';
-import classNames from 'classnames/bind';
 import styles from './ButtonDropdown.module.scss'
 import buttonStyles from './Button.module.scss'
 import UseDropDownBox from 'hooks/UseDropDownBox';
 import { observer } from 'mobx-react-lite';
 import { useRootStore } from 'providers/RootStoreProvider';
+import { cxBind } from 'utils/ui';
 
 
-const cx = classNames.bind(styles);
+const cx = cxBind(styles);
 const initialValues = {
     design: 'btn-dropdown'
 }
@@ -25,7 +25,7 @@ const ButtonDropdown = ({
 }) => {
 
     const dropdownRef = useRef(null);
-    const buttoncx = classNames.bind(buttonStyles);
+    const buttoncx = cxBind(buttonStyles);
     const getIcons = icons({ cx: buttoncx })
     const iconCheck = getIcons !== null ? ((Array.isArray(getIcons)) ? getIcons.map((icon) => <React.Fragment key={key + 'i'} children={icon} />) : getIcons) : ''
     const { show, setShowHandler } = UseDropDownBox(dropdownRef);

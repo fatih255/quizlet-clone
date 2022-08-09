@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from './FlashCardImage.module.scss';
-import classNames from 'classnames/bind';
+import { cxBind } from 'utils/ui';
 
 export default function FlashCardImage({ title, subtitle, text, image, imagePosition = 'right', design, button = undefined }) {
 
-    const cx = classNames.bind(styles);
+    const cx = cxBind(styles);
 
     return (
         <div className={cx('flashcard', design, { 'image-left': imagePosition === 'left', 'image-right': imagePosition === 'right' })}>

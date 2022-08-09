@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-
+import classNames from 'classnames/bind';
 
 
 // need use with onmousedown event
@@ -48,7 +48,13 @@ function selectorSass(cx) {
     let selector = (s) => { return `.${cx(s[0])}` }
     return { selector }
 }
+
+function cxBind(styles) {
+    const cx = classNames.bind(styles);
+    return cx
+}
+
 // USAGE : const {selector} = selectorSass(cx('test'))    use with backticks like selector.`testimonial-slider`
 
-export { changeCSS_RootVariable, onClickWithUserSelectNone, selectorSass }
+export { changeCSS_RootVariable, onClickWithUserSelectNone, selectorSass, cxBind }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Columns from './Columns';
 import cx from './cx';
 import SelectLanguages from '../SelectLanguages';
-import QuizletIcon, { FacebookIcon, InstagramIcon, TwitterIcon, YoutubeIcon } from 'quizlet-icons';
+import QuizletIcon from 'icons';
 import Link from 'next/link';
 
 

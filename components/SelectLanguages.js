@@ -1,13 +1,14 @@
 import React from 'react';
 import styles from './SelectLanguages.module.scss';
-import classNames from 'classnames/bind';
 import DownArrow from 'public/icons/common/down-arrow.svg';
+import { cxBind } from 'utils/ui';
+
 const SelectLanguages = () => {
-    const cx = classNames.bind(styles);
+    const cx = cxBind(styles);
     return (
         <div className={cx('select-languages')}>
             <select title="Dil Seçimi">
-                <option  value="de">Deutsch</option>
+                <option value="de">Deutsch</option>
                 <option value="en-gb">English (UK)</option>
                 <option value="en-us">English (USA)</option>
                 <option value="es">Español</option>

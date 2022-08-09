@@ -1,0 +1,27 @@
+@use 'styles/variables.module.scss';
+
+.seperator {
+    display: flex;
+
+    div:first-child,
+    div:last-child {
+        flex-basis: 2rem;
+        flex-grow: 1;
+
+        hr {
+            border: none;
+            border-bottom: 0.125rem solid variables.$gray-color-250;
+            height: 0;
+            margin-bottom: 0;
+            overflow: visible;
+        }
+    }
+
+    div:nth-child(2) {
+        flex-grow: 0;
+        margin: 0 1rem;
+        font-size: .75rem;
+        font-weight: 600;
+        color: variables.$gray-color-300;
+    }
+}

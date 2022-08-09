@@ -38,7 +38,19 @@
 @include createCSS('order', 15, true);
 
 // order-[lt-xs,lt-md,...lt-lg]-[1,....15] order with responsive
-
 @include media-queries.createResponsiveClasses('order') {
     @include createCSS('order', 15, true, false);
+}
+
+@mixin animate($animation, $duration, $method, $times, $fillMode:'forwards') {
+    .#{$animation} {
+        animation: $animation $duration $method $times;
+        animation-fill-mode: #{$fillMode};
+    }
+}
+
+@mixin keyframes($name) {
+    @keyframes #{$name} {
+        @content;
+    }
 }

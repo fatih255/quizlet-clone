@@ -1,14 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import styles from './TestimonialSlider.module.scss';
-import classNames from 'classnames/bind';
-import { selectorSass } from 'utils/ui';
+import { cxBind, selectorSass } from 'utils/ui';
 
 const TestimonialSlider = ({ items }) => {
 
-    const cx = classNames.bind(styles);
-    const { selector } = selectorSass(cx);
+    const cx = cxBind(styles);
     const EffectRan = useRef(false);
-    const isFirst = useRef(true);
     useEffect(() => {
 
         const testimonials = document.querySelectorAll('.testimonial');
