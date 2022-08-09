@@ -22,12 +22,13 @@
     }
 
     .bottom {
-        margin-top: 4rem;
         display: flex;
         align-items: center;
         flex-wrap: wrap;
         flex: 1;
         @include defaulWidth;
+        padding-bottom: 2rem;
+        padding-top: 2rem;
 
         @include lt-sm {
             padding: 1rem 0 0;
@@ -104,8 +105,7 @@
 
     a {
         display: flex;
-        gap:.4rem;
-        align-left: center;
+        gap: .4rem;
         font-size: .95rem;
         margin-bottom: 1rem;
         font-weight: 600;
