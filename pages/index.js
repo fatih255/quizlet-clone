@@ -5,6 +5,7 @@ import FlashCardImage from 'components/FlashCardImage';
 import TestimonialSlider from 'components/TestimonialSlider';
 import { IoMdAdd } from 'react-icons/io';
 import HighlightButton from 'components/HighlightButton';
+import PlayStoreSection from 'components/PlayStoreSection';
 
 
 export default function Home() {
@@ -103,7 +104,7 @@ export default function Home() {
           }
         />
       </section>
-
+      <PlayStoreSection />
     </>
   )
 }

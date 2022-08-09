@@ -1,5 +1,4 @@
 @import 'styles/utils.module.scss';
-
 $primary-color: #4255ff;
 $primary-color-hover:#423ed8;
 $secondary-color: #ffcd1f;
@@ -11,6 +10,7 @@ $gray-color-200: #edeff4;
 $gray-color-250: #d6d6d6;
 $gray-color-275: #bfbfbf;
 $gray-color-300:#80869a;
+$gray-color-350:#586380; // social media icon color
 $gray-color-400: #282e3e;
 
 .box-shadow-sm {
@@ -21,9 +21,9 @@ $gray-color-400: #282e3e;
     border-radius: 0.6rem;
 }
 
-
 :export {
     primaryColor: $primary-color;
     secondaryColor: $secondary-color;
+    grayColor350: $gray-color-350;
     grayColor400: $gray-color-400;
 }
